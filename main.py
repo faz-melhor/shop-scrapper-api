@@ -1,18 +1,11 @@
-import requests
-from bs4 import BeautifulSoup
+from scrapper import hardmob
+# from utils import data
+from utils import utils
 
-url = 'https://www.hardmob.com.br/forums/407-Promocoes'
-req = requests.get(url)
+raw_data = hardmob.scrap_hardmob()
 
-soup = BeautifulSoup(req.text, 'html.parser')
-threads = soup.find_all(class_='threadtitle')
+# Printing the data
+# print_json(raw_data)
 
-all_threads = []
-for thread in soup.find_all(class_='threadtitle'):
-    thread_details = dict()
-    thread_details['name'] = thread.get_text()
-    if thread.find(class_='title'):
-        thread_details['link'] = thread.find(class_='title').get('href')
-    all_threads.append(thread_details)
-
-print(all_threads)
+# Temporarily saving in local file
+utils.write_file(raw_data, 'data.json')
