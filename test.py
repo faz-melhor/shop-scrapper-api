@@ -1,5 +1,5 @@
 from scrapper import hardmob
-# from utils import data
+from utils import data
 from utils import utils
 
 raw_data = hardmob.scrap_hardmob()
